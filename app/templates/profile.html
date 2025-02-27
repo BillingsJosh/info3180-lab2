@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Profile - Joshua Billings{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/app.css') }}">
+{% endblock %}
+
+{% block main %}
+    <div class="profile-card">
+        <img src="{{ url_for('static', filename='images/Davies.jfif') }}" alt="Profile Picture" class="profile-pic">
+        <h2 class="profile-name">{{ user.name }}</h2>
+        <p class="username">{{ user.username }}</p>
+        <p class="location">{{ user.location }}</p>
+        <p class="joined">Joined {{ user.joined }}</p>
+        <p class="bio">{{ user.bio }}</p>
+
+        <div class="stats">
+            <div><strong>{{ user.posts }}</strong><br>Posts</div>
+            <div><strong>{{ user.following }}</strong><br>Following</div>
+            <div><strong>{{ user.followers }}</strong><br>Followers</div>
+        </div>
+
+        <button class="follow-btn">Follow</button>
+    </div>
+{% endblock %}
+
+{% block js %}
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+{% endblock %}

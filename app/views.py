@@ -1,10 +1,28 @@
 from app import app
 from flask import render_template, request, redirect, url_for, flash
+from datetime import datetime
+
+def format_date_joined():
+    return datetime.now().strftime("%B, %Y")
 
 
 ###
 # Routing for your application.
 ###
+@app.route('/profile')
+def profile():
+    user = {
+        "name": "Joshua Billings",
+        "username": "@jbillings",
+        "location": "Kingston, Jamaica",
+        "joined": format_date_joined(),  # Get the current date dynamically
+        "bio": "Passionate about software development and system design. Always learning and exploring new tech.",
+        "posts": 15,
+        "following": 120,
+        "followers": 300,
+        "profile_pic": url_for('static', filename='Davies.jfif')
+    } 
+    return render_template('profile.html', user = user)
 
 @app.route('/')
 def home():
@@ -15,7 +33,7 @@ def home():
 @app.route('/about/')
 def about():
     """Render the website's about page."""
-    return render_template('about.html', name="Mary Jane")
+    return render_template('about.html', name="Joshua Billings")
 
 
 ###
